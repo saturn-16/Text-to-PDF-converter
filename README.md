@@ -6,8 +6,11 @@ The structure of folder should look like this :-
 your-project-name/
 ├── .gitignore
 ├── app.py
+
 ├── LICENSE.md
+
 ├── requirements.txt
+
 ├── README.md
 ├── static/
 │   ├── css/
