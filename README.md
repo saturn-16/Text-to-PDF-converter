@@ -5,6 +5,7 @@ A simple, user-friendly web application for converting rich text content into a 
 The structure of folder should look like this :-
 your-project-name/
 ├── .gitignore
+
 ├── app.py
 
 ├── LICENSE.md
@@ -12,18 +13,31 @@ your-project-name/
 ├── requirements.txt
 
 ├── README.md
+
 ├── static/
+
 │   ├── css/
+
 │   │   └── style.css
+
 │   ├── js/
+
 │   │   └── scripts.js
+
 │   └── google_icon.svg
+
 ├── templates/
+
 │   ├── base.html
+
 │   ├── index.html
+
 │   ├── login.html
+
 │   └── register.html
+
 └── site.db (this file is generated when you run the app)
+
 
 ## Features
 
