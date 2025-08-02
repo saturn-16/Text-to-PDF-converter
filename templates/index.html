@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block title %}Text to PDF Converter{% endblock %}
+
+{% block content %}
+    <section class="glassmorphism-card main-converter-card">
+        <h1>Text to PDF Converter</h1>
+        <p>A simple yet powerful tool to turn your text into a beautiful PDF.</p>
+        
+        <form action="{{ url_for('convert') }}" method="post" class="converter-form">
+            <div id="editor-container"></div>
+            <input type="hidden" name="text_input" id="text_input">
+            <button type="submit" class="convert-button">Convert to PDF</button>
+        </form>
+    </section>
+
+    <section class="how-to-use">
+        <h2>How to Use</h2>
+        <ol>
+            <li><strong>Input Your Text:</strong> Copy and paste your text into the editor above, or write on your own.</li>
+            <li><strong>Customize Your Content:</strong> Use the toolbar to apply features like <b>bold</b>, <i>italic</i>, and text alignment. You can also change font sizes.</li>
+            <li><strong>Convert:</strong> Once you're happy with your text, click the "Convert to PDF" button to download your file.</li>
+        </ol>
+    </section>
+{% endblock %}
+
+{% block scripts %}
+    <script>
+        var toolbarOptions = [
+            ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
+            ['blockquote', 'code-block'],
+
+            [{ 'header': 1 }, { 'header': 2 }],               // custom button values
+            [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+            [{ 'script': 'sub'}, { 'script': 'super' }],      // superscript/subscript
+            [{ 'indent': '-1'}, { 'indent': '+1' }],          // outdent/indent
+            [{ 'direction': 'rtl' }],                         // text direction
+
+            [{ 'size': ['small', false, 'large', 'huge'] }],  // custom dropdown
+            [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+
+            [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
+            [{ 'font': [] }],
+            [{ 'align': [] }],
+
+            ['clean']                                         // remove formatting button
+        ];
+        var quill = new Quill('#editor-container', {
+            theme: 'snow',
+            placeholder: 'Start typing or paste your text here...',
+            modules: {
+                toolbar: toolbarOptions
+            }
+        });
+
+        // Update the hidden input field with the editor's HTML content before form submission
+        document.querySelector('.converter-form').onsubmit = function() {
+            var html = quill.root.innerHTML;
+            document.querySelector('#text_input').value = html;
+        };
+    </script>
+{% endblock %}
